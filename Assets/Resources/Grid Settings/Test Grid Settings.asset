@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Test Grid Settings
   m_EditorClassIdentifier: Assets.Scripts.Models::GridSettings
   <MinSize>k__BackingField:
-    x: 30
-    y: 30
-    z: 30
-  <MaxSize>k__BackingField:
     x: 10
     y: 10
     z: 10
+  <MaxSize>k__BackingField:
+    x: 30
+    y: 30
+    z: 30
   <MinMaxNbRooms>k__BackingField:
     x: 1
     y: 30

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Assets.Scripts.Models.WFC;
 using UnityEngine;
 
 /// <summary>
@@ -18,6 +20,15 @@ public class WFCView : MonoBehaviour
     /// </summary>
     [field: SerializeField]
     private GridSettings _gridSettings { get; set; }
+
+    #endregion
+
+    #region Variables d'instance
+
+    /// <summary>
+    /// Les celles comprenant la grille
+    /// </summary>
+    private List<Cell> _cells;
 
     #endregion
 
