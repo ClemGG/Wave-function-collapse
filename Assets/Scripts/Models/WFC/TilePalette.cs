@@ -10,23 +10,25 @@ namespace Assets.Scripts.Models.WFC
     public class TilePalette : ScriptableObject
     {
         /// <summary>
-        /// La liste des cases instantiables fixes
-        /// qui servent de point d'ancrage pour la suite de la génération
-        /// et doivent tjs être instanciées
+        /// La liste des salles préconstruites créées avant tout le reste de la génération.
+        /// Elles ne sont pas incluses dans la liste des options possibles pour une cellule.
         /// </summary>
         [field: SerializeField]
-        public FixedTile[] FixedTiles { get; private set; }
+        [field: Tooltip("La liste des salles préconstruites créées avant tout le reste de la génération.\n\nElles ne sont pas incluses dans la liste des options possibles pour une cellule.")]
+        public FixedRoom[] GuaranteedFixedRooms { get; private set; }
 
         /// <summary>
-        /// La liste des cases instantiables servant de salles préconstruites
+        /// La liste des salles préconstruites instantiables
         /// </summary>
         [field: SerializeField]
-        public Tile[] RoomTiles { get; private set; }
+        [field: Tooltip("La liste des salles préconstruites instantiables")]
+        public FixedRoom[] FixedRooms { get; private set; }
 
         /// <summary>
-        /// La liste des cases instantiables servant de connexions entre salles
+        /// La liste des cases instantiables
         /// </summary>
         [field: SerializeField]
-        public Tile[] ConnectionTiles { get; private set; }
+        [field: Tooltip("La liste des cases instantiables")]
+        public Tile[] Tiles { get; private set; }
     }
 }

@@ -42,10 +42,9 @@ namespace Assets.Scripts.Views.WFC
         private List<Cell> _cells;
 
         /// <summary>
-        /// Les cases possibles dans une cellule donnée
-        /// au début de la génération
+        /// La liste de toutes les options possibles pour une case
         /// </summary>
-        private List<Tile> _possibleTiles;
+        private List<ITileOption> _possibleTiles;
 
         /// <summary>
         /// Les cases possibles dans une cellule donnée
@@ -82,25 +81,20 @@ namespace Assets.Scripts.Views.WFC
         [ContextMenu("Generate")]
         public void Generate()
         {
-            _possibleTiles = new List<Tile>();
-            _possibleTiles.AddRange(_tilePalette.RoomTiles);
-            _possibleTiles.AddRange(_tilePalette.ConnectionTiles);
+            _possibleTiles = new List<ITileOption>();
+            _possibleTiles.AddRange(_tilePalette.FixedRooms);
+            _possibleTiles.AddRange(_tilePalette.Tiles);
             GetRandomSizeAndNbRooms(ref rand, out int3 randDimensions, out int randNbMaxRooms);
+            _cells = CreateCells(_possibleTiles, randDimensions);
 
-            _cells = new List<Cell>(randDimensions.x * randDimensions.y * randDimensions.z);
-
-            for (int x = 0; x < randDimensions.x; ++x)
+            try
             {
-                for (int y = 0; y < randDimensions.y; ++y)
-                {
-                    for (int z = 0; z < randDimensions.z; ++z)
-                    {
-                        _cells.Add(new Cell(_possibleTiles, new int3(x, y, z)));
-                    }
-                }
+                WFCAlg.Generate(_cells, _tilePalette, randDimensions, randNbMaxRooms, ref rand);
             }
-
-            WFCAlg.Generate(_cells, randDimensions, ref rand);
+            catch (System.Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
 
         #endregion
@@ -117,6 +111,30 @@ namespace Assets.Scripts.Views.WFC
         {
             randDimensions = new(rand.NextInt3(_gridSettings.MinSize, _gridSettings.MaxSize));
             randNbMaxRooms = rand.NextInt(_gridSettings.MinMaxNbRooms.x, _gridSettings.MinMaxNbRooms.y);
+        }
+
+        /// <summary>
+        /// Crée une nouvelle grille de cellules
+        /// </summary>
+        /// <param name="possibleTiles">La liste des possibilités de chaque cellule</param>
+        /// <param name="gridSize">Les dimensions de la grille</param>
+        /// <returns>La liste des cellules composant la grille</returns>
+        private List<Cell> CreateCells(List<ITileOption> possibleTiles, int3 gridSize)
+        {
+            List<Cell> cells = new(gridSize.x * gridSize.y * gridSize.z);
+
+            for (int x = 0; x < gridSize.x; ++x)
+            {
+                for (int y = 0; y < gridSize.y; ++y)
+                {
+                    for (int z = 0; z < gridSize.z; ++z)
+                    {
+                        cells.Add(new Cell(new List<ITileOption>(possibleTiles), new int3(x, y, z)));
+                    }
+                }
+            }
+
+            return cells;
         }
 
         #endregion

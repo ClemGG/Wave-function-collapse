@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: Stairs Ceiling Tile
   m_EditorClassIdentifier: Assets.Scripts.Models::Tile
   <TilePrefab>k__BackingField: {fileID: 8118528305074389570, guid: f82965a908432074d922306eccd278c8, type: 3}
-  <Size>k__BackingField:
-    x: 1
-    y: 1
-    z: 1
   <RightNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField:
+    <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 2
       bytes:
         offset0000:
@@ -52,8 +48,9 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []
   <LeftNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField:
+    <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 2
       bytes:
         offset0000:
@@ -87,8 +84,9 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []
   <UpNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField:
+    <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 2
       bytes:
         offset0000:
@@ -122,8 +120,9 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []
   <DownNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField:
+    <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 1
       bytes:
         offset0000:
@@ -157,8 +156,9 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []
   <ForwardNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField:
+    <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 1
       bytes:
         offset0000:
@@ -192,8 +192,9 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []
   <BackNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField:
+    <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 2
       bytes:
         offset0000:
@@ -227,3 +228,4 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []

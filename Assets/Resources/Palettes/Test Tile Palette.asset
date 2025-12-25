@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4b359cea3e2174da93f1be6e27ff85, type: 3}
   m_Name: Test Tile Palette
   m_EditorClassIdentifier: Assets.Scripts.Models::TilePalette
-  <FixedTiles>k__BackingField:
-  - <Tile>k__BackingField: {fileID: 11400000, guid: 9605f1cf2796ac24bbef41a88aca799b, type: 2}
-    <Amount>k__BackingField: 1
-  <RoomTiles>k__BackingField:
-  - {fileID: 11400000, guid: 1e6303c2b6b2f5f458db1c00ab198069, type: 2}
-  - {fileID: 11400000, guid: e5af17f33d2415040aa9a9e9c5fcf650, type: 2}
-  - {fileID: 11400000, guid: 9650be9d8c6d74d44aec6342cf1fadd9, type: 2}
-  <ConnectionTiles>k__BackingField:
-  - {fileID: 11400000, guid: eb58853d9caa9a3409db88442e0882a1, type: 2}
+  <GuaranteedFixedRooms>k__BackingField:
+  - {fileID: 11400000, guid: 75cb814747a3942418195b49c7b3f379, type: 2}
+  <FixedRooms>k__BackingField:
+  - {fileID: 11400000, guid: b06611407e64a8c4f8df2dc8aae18288, type: 2}
+  - {fileID: 11400000, guid: db30ee877722fc64ba3a4ed2068c200e, type: 2}
+  - {fileID: 11400000, guid: b01906a765e7a1b43b0b88c6c5219b0d, type: 2}
+  <Tiles>k__BackingField:
   - {fileID: 11400000, guid: 563a4f5b179bbff49919162ce6112d8b, type: 2}
   - {fileID: 11400000, guid: 60945c1ff71d5f74ebda89dea0308cb4, type: 2}
   - {fileID: 11400000, guid: aa81d96e3a2b84a4cbc9cccc23fbe090, type: 2}
+  - {fileID: 11400000, guid: eb58853d9caa9a3409db88442e0882a1, type: 2}
   - {fileID: 11400000, guid: d2ada8bbf9c6c11439165099b66994a7, type: 2}
   - {fileID: 11400000, guid: 7079b654484392e49b77888c25ee00df, type: 2}

@@ -18,14 +18,15 @@ namespace Assets.Scripts.Models.WFC
         /// Les IDs des voisins possibles pour ce port
         /// </summary>
         [field: SerializeField]
+        [field: Tooltip("Les IDs des voisins possibles pour ce port")]
         public FixedString32Bytes[] PossibleNeighbours { get; private set; }
 
         /// <summary>
         /// Les probabilités de chaque ID d'être sélectionné pour la génération.
-        /// Si le tableau est vide, les IDs DOIVENT être sélectionnés 
-        /// tels qu'ils sont renseignés dans la liste des voisins possibles.
+        /// Si tous ont la même probabilité, laisser le tableau vide.
         /// </summary>
         [field: SerializeField]
+        [field: Tooltip("Les probabilités de chaque ID d'être sélectionné pour la génération. Si tous ont la même probabilité, laisser le tableau vide.")]
         public float[] Weights { get; private set; }
     }
 }

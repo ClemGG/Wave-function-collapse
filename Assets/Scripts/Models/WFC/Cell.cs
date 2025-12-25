@@ -23,7 +23,7 @@ namespace Assets.Scripts.Models.WFC
         /// <summary>
         /// Les possibilités de cette cellule
         /// </summary>
-        public List<Tile> Options { get; set; }
+        public List<ITileOption> Options { get; set; }
 
         /// <summary>
         /// La rotation de cette cellule
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Models.WFC
         /// <summary>
         /// Les coordonnées de cette cellule
         /// </summary>
-        public int3 Coords { get; set; }
+        public Range Range { get; set; }
 
         #endregion
 
@@ -44,11 +44,24 @@ namespace Assets.Scripts.Models.WFC
         /// </summary>
         /// <param name="options">Les possibilités de cette cellule</param>
         /// <param name="coords">Les coordonnées de cette cellule</param>
-        public Cell(List<Tile> options, int3 coords)
+        public Cell(List<ITileOption> options, int3 coords)
         {
             this.Options = options;
-            this.Coords = coords;
+            this.Range = new Range(coords);
             this.Rotation = 0;
+        }
+
+        #endregion
+
+        #region Méthodes publiques
+
+        /// <summary>
+        /// Fusionne les deux cellules
+        /// </summary>
+        /// <param name="other">La cellule avec laquelle fusionner</param>
+        public void FuseWith(in Cell other)
+        {
+
         }
 
         #endregion

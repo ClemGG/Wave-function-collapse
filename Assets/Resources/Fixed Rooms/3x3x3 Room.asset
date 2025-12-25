@@ -9,49 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1937a2ced2d93b449ca2ecd3e1fc5d8, type: 3}
-  m_Name: Room 3x3 Tile
-  m_EditorClassIdentifier: Assets.Scripts.Models::Tile
-  <TilePrefab>k__BackingField: {fileID: 4327432019432263715, guid: 5ec3eb7abb3dc5945899f2eab18ef875, type: 3}
+  m_Script: {fileID: 11500000, guid: ddcfa257fc379594a9de962d03cac7ca, type: 3}
+  m_Name: 3x3x3 Room
+  m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.FixedRoom
+  <TilePrefab>k__BackingField: {fileID: 4327432019432263715, guid: 4df929c562ba6c74c9554759bc59d332, type: 3}
   <Size>k__BackingField:
-    x: 1
-    y: 1
-    z: 1
+    x: 3
+    y: 3
+    z: 3
   <RightNeighbours>k__BackingField:
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
     - utf8LengthInBytes: 1
       bytes:
         offset0000:
@@ -118,42 +93,25 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   <LeftNeighbours>k__BackingField:
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
     - utf8LengthInBytes: 1
       bytes:
         offset0000:
@@ -221,113 +179,26 @@ MonoBehaviour:
         byte0028: 0
         byte0029: 0
     <Weights>k__BackingField: []
-  <UpNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
+  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
-  <DownNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
+  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  <UpNeighbours>k__BackingField: []
+  <DownNeighbours>k__BackingField: []
   <ForwardNeighbours>k__BackingField:
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
     - utf8LengthInBytes: 1
       bytes:
         offset0000:
@@ -394,42 +265,25 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   <BackNeighbours>k__BackingField:
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
     - utf8LengthInBytes: 1
       bytes:
         offset0000:
@@ -496,4 +350,12 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
+    <Weights>k__BackingField: []
+  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
