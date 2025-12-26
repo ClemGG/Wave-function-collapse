@@ -20,6 +20,26 @@ namespace Assets.Scripts.Models.WFC
         public readonly int Length => Value.Length;
 
         /// <summary>
+        /// La moyenne des points enregistrés, formant le centre de la plage
+        /// </summary>
+        public readonly int3 Centroid
+        {
+            get
+            {
+                int3 avg = 0;
+
+                for (int i = 0; i < Length; ++i)
+                {
+                    avg += Value[i];
+                }
+
+                avg /= Length;
+
+                return avg;
+            }
+        }
+
+        /// <summary>
         /// Les coordonnées de la 1è cellule
         /// </summary>
         public readonly int3[] Value { get; }

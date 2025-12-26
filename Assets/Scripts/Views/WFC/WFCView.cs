@@ -101,12 +101,13 @@ namespace Assets.Scripts.Views.WFC
                 return;
             }
 
-            Gizmos.color = Color.yellow;
+            //Gizmos.color = Color.yellow;
 
             if (_drawCells)
             {
                 foreach (Cell cell in _cells)
                 {
+                    Gizmos.color = Color.Lerp(Color.yellow, Color.white, (float)cell.Options.Count / _tilePalette.Tiles.Length);
                     int3 v = cell.Range[0];
                     Gizmos.DrawWireCube(new Vector3(v.x, v.y, v.z), Vector3.one);
                 }
@@ -121,14 +122,7 @@ namespace Assets.Scripts.Views.WFC
                     if (cell.Options.Count == 1 && cell.Options[0] is FixedRoom fr)
                     {
                         int3 size = fr.Size;
-                        int3 avg = 0;
-
-                        for (int i = 0; i < cell.Range.Length; ++i)
-                        {
-                            avg += cell.Range[i];
-                        }
-
-                        avg /= cell.Range.Length;
+                        int3 avg = cell.Range.Centroid;
                         Gizmos.DrawCube(new Vector3(avg.x, avg.y, avg.z), new Vector3(size.x, size.y, size.z));
                     }
                 }

@@ -151,6 +151,9 @@ MonoBehaviour:
   <_tilePalette>k__BackingField: {fileID: 11400000, guid: fddb9d4e62fdbea41a85f4610d844bdc, type: 2}
   <_gridSettings>k__BackingField: {fileID: 11400000, guid: a8ed42e558f972b4385ac9c468ca1bed, type: 2}
   <_seed>k__BackingField: 0
+  <_drawGizmos>k__BackingField: 1
+  <_drawCells>k__BackingField: 1
+  <_drawRooms>k__BackingField: 1
 --- !u!4 &366060059
 Transform:
   m_ObjectHideFlags: 0
