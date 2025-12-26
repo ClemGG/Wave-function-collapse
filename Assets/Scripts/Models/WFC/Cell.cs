@@ -35,6 +35,36 @@ namespace Assets.Scripts.Models.WFC
         /// </summary>
         public Range Range { get; set; }
 
+        /// <summary>
+        /// Les IDs des voisins possibles à droite de cette case
+        /// </summary>
+        public List<Range> RightNeighbours { get; set; }
+
+        /// <summary>
+        /// Les IDs des voisins possibles à gauche de cette case
+        /// </summary>
+        public List<Range> LeftNeighbours { get; set; }
+
+        /// <summary>
+        /// Les IDs des voisins possibles au-dessus de cette case
+        /// </summary>
+        public List<Range> UpNeighbours { get; set; }
+
+        /// <summary>
+        /// Les IDs des voisins possibles au-dessus de cette case
+        /// </summary>
+        public List<Range> DownNeighbours { get; set; }
+
+        /// <summary>
+        /// Les IDs des voisins possibles devant de cette case
+        /// </summary>
+        public List<Range> ForwardNeighbours { get; set; }
+
+        /// <summary>
+        /// Les IDs des voisins possibles derrière de cette case
+        /// </summary>
+        public List<Range> BackNeighbours { get; set; }
+
         #endregion
 
         #region Constructeur
@@ -49,19 +79,12 @@ namespace Assets.Scripts.Models.WFC
             this.Options = options;
             this.Range = new Range(coords);
             this.Rotation = 0;
-        }
-
-        #endregion
-
-        #region Méthodes publiques
-
-        /// <summary>
-        /// Fusionne les deux cellules
-        /// </summary>
-        /// <param name="other">La cellule avec laquelle fusionner</param>
-        public void FuseWith(in Cell other)
-        {
-
+            this.RightNeighbours = new List<Range>();
+            this.LeftNeighbours = new List<Range>();
+            this.UpNeighbours = new List<Range>();
+            this.DownNeighbours = new List<Range>();
+            this.ForwardNeighbours = new List<Range>();
+            this.BackNeighbours = new List<Range>();
         }
 
         #endregion

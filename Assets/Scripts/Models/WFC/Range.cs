@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 
 namespace Assets.Scripts.Models.WFC
@@ -14,36 +17,12 @@ namespace Assets.Scripts.Models.WFC
         /// <summary>
         /// Le nombre de coordonnés comprises dans cette plage
         /// </summary>
-        public readonly int3 Count
-        {
-            get
-            {
-                int count = 0;
-
-                for (int x = Start.x; x < End.x; ++x)
-                {
-                    for (int y = Start.y; y < End.y; ++y)
-                    {
-                        for (int z = Start.z; z < End.z; ++z)
-                        {
-                            ++count;
-                        }
-                    }
-                }
-
-                return count;
-            }
-        }
+        public readonly int Length => Value.Length;
 
         /// <summary>
         /// Les coordonnées de la 1è cellule
         /// </summary>
-        public readonly int3 Start { get; }
-
-        /// <summary>
-        /// Les coordonnées de la dernière cellule
-        /// </summary>
-        public readonly int3 End { get; }
+        public readonly int3[] Value { get; }
 
         #endregion
 
@@ -53,18 +32,36 @@ namespace Assets.Scripts.Models.WFC
         /// Constructeur
         /// </summary>
         /// <param name="coords">Les coordonnées de la cellule</param>
-        public Range(int3 coords) : this(coords, coords) { }
+        public Range(int3 coords)
+        {
+            Value = new int3[1] { coords };
+        }
 
         /// <summary>
         /// Constructeur
         /// </summary>
-        /// <param name="start">Les coordonnées de la 1è cellule</param>
-        /// <param name="end">Les coordonnées de la dernière cellule</param>
-        public Range(int3 start, int3 end)
+        /// <param name="range">La plage de cellules</param>
+        public Range(List<int3> range)
         {
-            Start = start;
-            End = end;
+            Value = new int3[range.Count];
+            range.CopyTo(Value);
         }
+
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="range">La plage de cellules</param>
+        public Range(params int3[] range)
+        {
+            Value = new int3[range.Length];
+            Array.Copy(range, Value, range.Length);
+        }
+
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="range">La plage de cellules</param>
+        public Range(Range range) : this(range.Value) { }
 
         #endregion
 
@@ -79,30 +76,11 @@ namespace Assets.Scripts.Models.WFC
         {
             get
             {
-                if (index < 0)
-                {
-                    throw new System.ArgumentOutOfRangeException($"Erreur : L'index renseigné dépasse la plage de coordonnées ({index}).");
-                }
-
-                int count = 0;
-
-                for (int x = Start.x; x < End.x; ++x)
-                {
-                    for (int y = Start.y; y < End.y; ++y)
-                    {
-                        for (int z = Start.z; z < End.z; ++z)
-                        {
-                            if (count == index)
-                            {
-                                return new int3(x, y, z);
-                            }
-
-                            ++count;
-                        }
-                    }
-                }
-
-                throw new System.ArgumentOutOfRangeException($"Erreur : L'index renseigné dépasse la plage de coordonnées (Index : {index} ; Count : {count}).");
+                return Value[index];
+            }
+            set
+            {
+                Value[index] = value;
             }
         }
 
@@ -113,12 +91,7 @@ namespace Assets.Scripts.Models.WFC
         /// <returns>TRUE si les coordonnées renseignées sont comprises dans la plage</returns>
         public readonly bool Contains(int3 coords)
         {
-            bool3 s = Start <= coords;
-            bool3 e = coords <= End;
-            bool biggerThanStart = s.x && s.y && s.z;
-            bool smallerThanEnd = e.x && e.y && e.z;
-
-            return biggerThanStart && smallerThanEnd;
+            return Value.Contains(coords);
         }
 
         /// <summary>
@@ -128,7 +101,8 @@ namespace Assets.Scripts.Models.WFC
         /// <returns>TRUE si les coordonnées renseignées sont comprises dans la plage</returns>
         public readonly bool Contains(Range other)
         {
-            return Contains(other.Start) && Contains(other.End);
+            Func<int3, bool> contains = Contains;
+            return Array.TrueForAll(other.Value, coord => contains(coord));
         }
 
         #endregion

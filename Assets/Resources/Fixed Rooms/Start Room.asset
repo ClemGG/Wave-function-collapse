@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.FixedRoom
   <TilePrefab>k__BackingField: {fileID: 1044533513892719316, guid: 5be0339db5eb58944870083904d07245, type: 3}
   <Size>k__BackingField:
-    x: 1
-    y: 1
-    z: 1
+    x: 3
+    y: 3
+    z: 3
   <RightNeighbours>k__BackingField:
   - <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 1
