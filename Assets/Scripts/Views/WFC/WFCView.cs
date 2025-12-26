@@ -14,6 +14,9 @@ namespace Assets.Scripts.Views.WFC
     {
         #region Propriétés
 
+        [field: Header("Paramètres :")]
+        [field: Space(10)]
+
         /// <summary>
         /// La palette de cases à instancier
         /// </summary>
@@ -31,6 +34,28 @@ namespace Assets.Scripts.Views.WFC
         /// </summary>
         [field: SerializeField]
         private uint _seed { get; set; }
+
+        [field: Space(10)]
+        [field: Header("Gizmos :")]
+        [field: Space(10)]
+
+        /// <summary>
+        /// TRUE pour afficher les gizmos
+        /// </summary>
+        [field: SerializeField]
+        private bool _drawGizmos { get; set; } = true;
+
+        /// <summary>
+        /// TRUE pour afficher les cellules
+        /// </summary>
+        [field: SerializeField]
+        private bool _drawCells { get; set; } = true;
+
+        /// <summary>
+        /// TRUE pour afficher les salles
+        /// </summary>
+        [field: SerializeField]
+        private bool _drawRooms { get; set; } = true;
 
         #endregion
 
@@ -66,33 +91,46 @@ namespace Assets.Scripts.Views.WFC
             rand = new(seed);
         }
 
+        /// <summary>
+        /// Affiche des indicateurs dans la scène
+        /// </summary>
         private void OnDrawGizmosSelected()
         {
-            if (_cells == null)
+            if (!_drawGizmos || _cells == null)
             {
                 return;
             }
 
-            foreach (Cell cell in _cells)
+            Gizmos.color = Color.yellow;
+
+            if (_drawCells)
             {
-                if (cell.Options.Count > 1)
+                foreach (Cell cell in _cells)
                 {
-                    Gizmos.color = Color.yellow;
                     int3 v = cell.Range[0];
                     Gizmos.DrawWireCube(new Vector3(v.x, v.y, v.z), Vector3.one);
                 }
-                else
-                {
-                    Gizmos.color = Color.red;
-                    int3 size = (cell.Options[0] as FixedRoom).Size;
-                    int3 avg = 0;
-                    for (int i = 0; i < cell.Range.Length; ++i)
-                    {
-                        avg += cell.Range[i];
-                    }
+            }
 
-                    avg = avg / cell.Range.Length;
-                    Gizmos.DrawCube(new Vector3(avg.x, avg.y, avg.z), new Vector3(size.x, size.y, size.z));
+            Gizmos.color = Color.red;
+
+            if (_drawRooms)
+            {
+                foreach (Cell cell in _cells)
+                {
+                    if (cell.Options.Count == 1 && cell.Options[0] is FixedRoom fr)
+                    {
+                        int3 size = fr.Size;
+                        int3 avg = 0;
+
+                        for (int i = 0; i < cell.Range.Length; ++i)
+                        {
+                            avg += cell.Range[i];
+                        }
+
+                        avg /= cell.Range.Length;
+                        Gizmos.DrawCube(new Vector3(avg.x, avg.y, avg.z), new Vector3(size.x, size.y, size.z));
+                    }
                 }
             }
         }
@@ -107,13 +145,9 @@ namespace Assets.Scripts.Views.WFC
         [ContextMenu("Generate")]
         public void Generate()
         {
-            GetRandomSizeAndNbRooms(ref rand, out int3 gridSize, out int nbMaxRooms);
-            _cells = CreateCells(_tilePalette.Tiles, gridSize);
-            SetNeighbours(_cells, gridSize);
-
             try
             {
-                WFCAlg.Generate(_cells, _tilePalette, gridSize, nbMaxRooms, ref rand);
+                _cells = WFCAlg.Generate(_tilePalette, _gridSettings, ref rand);
             }
             catch (System.Exception e)
             {
@@ -121,102 +155,13 @@ namespace Assets.Scripts.Views.WFC
             }
         }
 
-        #endregion
-
-        #region Méthodes privées
-
         /// <summary>
-        /// Obtient une taille aléatoire ainsi qu'un nb aléatoire de salles pour le niveau
+        /// Génère un nouveau niveau
         /// </summary>
-        /// <param name="rand">Le générateur d'aléatoire</param>
-        /// <param name="gridSize">Les dimensions du niveau à créer</param>
-        /// <param name="nbMaxRooms">Le nb max de salles à créer</param>
-        private void GetRandomSizeAndNbRooms(ref random rand, out int3 gridSize, out int nbMaxRooms)
+        [ContextMenu("Clear Previous Results")]
+        public void Clear()
         {
-            gridSize = new(rand.NextInt3(_gridSettings.MinSize, _gridSettings.MaxSize));
-            nbMaxRooms = rand.NextInt(_gridSettings.MinMaxNbRooms.x, _gridSettings.MinMaxNbRooms.y);
-        }
-
-        /// <summary>
-        /// Crée une nouvelle grille de cellules
-        /// </summary>
-        /// <param name="possibleTiles">La liste des possibilités de chaque cellule</param>
-        /// <param name="gridSize">Les dimensions de la grille</param>
-        /// <returns>La liste des cellules composant la grille</returns>
-        private List<Cell> CreateCells(Tile[] possibleTiles, int3 gridSize)
-        {
-            List<Cell> cells = new(gridSize.x * gridSize.y * gridSize.z);
-
-            for (int x = 0; x < gridSize.x; ++x)
-            {
-                for (int y = 0; y < gridSize.y; ++y)
-                {
-                    for (int z = 0; z < gridSize.z; ++z)
-                    {
-                        cells.Add(new Cell(new List<ITileOption>(possibleTiles), new int3(x, y, z)));
-                    }
-                }
-            }
-
-            return cells;
-        }
-
-        /// <summary>
-        /// Assigne les voisins de chaque cellule
-        /// </summary>
-        /// <param name="cells">La liste des cellules de la grille</param>
-        /// <param name="gridSize">Les dimensions de la grille</param>
-        private void SetNeighbours(List<Cell> cells, int3 gridSize)
-        {
-            for (int i = 0; i < cells.Count; ++i)
-            {
-                Cell c = cells[i];
-                int3 coords = c.Range[0];
-
-                // Droite
-
-                if (coords.x + 1 < gridSize.x)
-                {
-                    c.RightNeighbours.Add(new Range(coords + new int3(1, 0, 0)));
-                }
-
-                // Gauche
-
-                if (coords.x - 1 > 0)
-                {
-                    c.LeftNeighbours.Add(new Range(coords + new int3(-1, 0, 0)));
-                }
-
-                // Haut
-
-                if (coords.y + 1 < gridSize.y)
-                {
-                    c.UpNeighbours.Add(new Range(coords + new int3(0, 1, 0)));
-                }
-
-                // Bas
-
-                if (coords.y - 1 > 0)
-                {
-                    c.DownNeighbours.Add(new Range(coords + new int3(0, -1, 0)));
-                }
-
-                // Devant
-
-                if (coords.z + 1 < gridSize.z)
-                {
-                    c.ForwardNeighbours.Add(new Range(coords + new int3(0, 0, 1)));
-                }
-
-                if (coords.z - 1 > 0)
-                {
-                    c.BackNeighbours.Add(new Range(coords + new int3(0, 0, -1)));
-                }
-
-                cells[i] = c;
-            }
-
-
+            _cells.Clear();
         }
 
         #endregion

@@ -10,20 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddcfa257fc379594a9de962d03cac7ca, type: 3}
-  m_Name: 3x3x3 Room
+  m_Name: 3x1x3 Room
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.FixedRoom
   <TilePrefab>k__BackingField: {fileID: 4327432019432263715, guid: 4df929c562ba6c74c9554759bc59d332, type: 3}
   <Size>k__BackingField:
     x: 3
-    y: 3
+    y: 1
     z: 3
   <RightNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField:
@@ -93,24 +87,12 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   <LeftNeighbours>k__BackingField:
   - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 1
       bytes:
@@ -178,12 +160,6 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
@@ -192,12 +168,6 @@ MonoBehaviour:
   <ForwardNeighbours>k__BackingField:
   - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 1
       bytes:
@@ -265,24 +235,12 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   <BackNeighbours>k__BackingField:
   - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField:
     - utf8LengthInBytes: 1
       bytes:
@@ -350,12 +308,6 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
   - <PossibleNeighbours>k__BackingField: []
     <Weights>k__BackingField: []
