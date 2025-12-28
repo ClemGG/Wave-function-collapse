@@ -13,7 +13,7 @@ namespace Assets.Scripts.Models.WFC
         /// <summary>
         /// TRUE s'il ne reste qu'une seule possibilité à cette case
         /// </summary>
-        public readonly bool Collapsed => this.Entropy == 1;
+        public readonly bool Collapsed => this.SelectedOption != null;
 
         /// <summary>
         /// Les possibilités restantes de cette cellule
@@ -21,9 +21,14 @@ namespace Assets.Scripts.Models.WFC
         public readonly int Entropy => this.Options.Count;
 
         /// <summary>
+        /// L'option assignée à cette cellule
+        /// </summary>
+        public ITileOption SelectedOption { get; set; }
+
+        /// <summary>
         /// Les possibilités de cette cellule
         /// </summary>
-        public List<ITileOption> Options { get; set; }
+        public List<Tile> Options { get; set; }
 
         /// <summary>
         /// La rotation de cette cellule
@@ -74,9 +79,10 @@ namespace Assets.Scripts.Models.WFC
         /// </summary>
         /// <param name="options">Les possibilités de cette cellule</param>
         /// <param name="coords">Les coordonnées de cette cellule</param>
-        public Cell(List<ITileOption> options, int3 coords)
+        public Cell(List<Tile> options, int3 coords)
         {
             this.Options = options;
+            this.SelectedOption = null;
             this.Range = new Range(coords);
             this.Rotation = 0;
             this.RightNeighbours = new List<Range>();

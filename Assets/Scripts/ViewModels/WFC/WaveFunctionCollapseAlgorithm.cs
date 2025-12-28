@@ -32,23 +32,24 @@ namespace Assets.Scripts.ViewModels.WFC
         {
             GetRandomSizeAndNbRooms(gridSettings, ref rand, out int3 gridSize, out int nbMaxRooms);
             List<Cell> gridCells = CreateCells(tilePalette.Tiles, gridSize);
+            List<Tile> allOptions = new(tilePalette.Tiles);
             SetNeighbours(gridCells, gridSize);
 
             // Au début de la génération, on place les salles préconstruites
 
             List<Cell> unoccupiedCells = gridCells.Where(c => !c.Collapsed).ToList();
-            CreateGuaranteedFixedRooms(gridCells, unoccupiedCells, tilePalette.GuaranteedFixedRooms, gridSize, ref rand);
-            CreateFixedRooms(gridCells, unoccupiedCells, tilePalette.FixedRooms, gridSize, nbMaxRooms, ref rand);
+            CreateGuaranteedFixedRooms(gridCells, unoccupiedCells, tilePalette.GuaranteedFixedRooms, allOptions, gridSize, ref rand);
+            CreateFixedRooms(gridCells, unoccupiedCells, tilePalette.FixedRooms, allOptions, gridSize, nbMaxRooms, ref rand);
 
-            // Réitère le calcul d'entropie des cellules
-            // tant qu'il nous reste des cellules à effondrer
+            //// Réitère le calcul d'entropie des cellules
+            //// tant qu'il nous reste des cellules à effondrer
 
-            //int nbCollapsedCells = 0;
+            List<Cell> cellsWithLowestEntropy = new(unoccupiedCells.Count);
 
-            //while (nbCollapsedCells < cells.Count)
-            //{
-            //    Iterate(cells, gridSize, ref rand);
-            //}
+            while (unoccupiedCells.Count > 0)
+            {
+                CreateTiles(gridCells, unoccupiedCells, cellsWithLowestEntropy, allOptions, ref rand);
+            }
 
             return gridCells;
         }
@@ -56,6 +57,43 @@ namespace Assets.Scripts.ViewModels.WFC
         #endregion
 
         #region Méthodes statiques privées
+
+        /// <summary>
+        /// Obtient une taille aléatoire ainsi qu'un nb aléatoire de salles pour le niveau
+        /// </summary>
+        /// <param name="gridSettings">Les paramètres de la grille</param>
+        /// <param name="rand">Le générateur d'aléatoire</param>
+        /// <param name="gridSize">Les dimensions du niveau à créer</param>
+        /// <param name="nbMaxRooms">Le nb max de salles à créer</param>
+        private static void GetRandomSizeAndNbRooms(GridSettings gridSettings, ref Random rand, out int3 gridSize, out int nbMaxRooms)
+        {
+            gridSize = new(rand.NextInt3(gridSettings.MinSize, gridSettings.MaxSize));
+            nbMaxRooms = rand.NextInt(gridSettings.MinMaxNbRooms.x, gridSettings.MinMaxNbRooms.y);
+        }
+
+        /// <summary>
+        /// Crée une nouvelle grille de cellules
+        /// </summary>
+        /// <param name="possibleTiles">La liste des possibilités de chaque cellule</param>
+        /// <param name="gridSize">Les dimensions de la grille</param>
+        /// <returns>La liste des cellules composant la grille</returns>
+        private static List<Cell> CreateCells(Tile[] possibleTiles, int3 gridSize)
+        {
+            List<Cell> cells = new(gridSize.x * gridSize.y * gridSize.z);
+
+            for (int x = 0; x < gridSize.x; ++x)
+            {
+                for (int y = 0; y < gridSize.y; ++y)
+                {
+                    for (int z = 0; z < gridSize.z; ++z)
+                    {
+                        cells.Add(new Cell(new List<Tile>(possibleTiles), new int3(x, y, z)));
+                    }
+                }
+            }
+
+            return cells;
+        }
 
         /// <summary>
         /// Assigne les voisins de chaque cellule
@@ -114,51 +152,15 @@ namespace Assets.Scripts.ViewModels.WFC
         }
 
         /// <summary>
-        /// Obtient une taille aléatoire ainsi qu'un nb aléatoire de salles pour le niveau
-        /// </summary>
-        /// <param name="gridSettings">Les paramètres de la grille</param>
-        /// <param name="rand">Le générateur d'aléatoire</param>
-        /// <param name="gridSize">Les dimensions du niveau à créer</param>
-        /// <param name="nbMaxRooms">Le nb max de salles à créer</param>
-        private static void GetRandomSizeAndNbRooms(GridSettings gridSettings, ref Random rand, out int3 gridSize, out int nbMaxRooms)
-        {
-            gridSize = new(rand.NextInt3(gridSettings.MinSize, gridSettings.MaxSize));
-            nbMaxRooms = rand.NextInt(gridSettings.MinMaxNbRooms.x, gridSettings.MinMaxNbRooms.y);
-        }
-
-        /// <summary>
-        /// Crée une nouvelle grille de cellules
-        /// </summary>
-        /// <param name="possibleTiles">La liste des possibilités de chaque cellule</param>
-        /// <param name="gridSize">Les dimensions de la grille</param>
-        /// <returns>La liste des cellules composant la grille</returns>
-        private static List<Cell> CreateCells(Tile[] possibleTiles, int3 gridSize)
-        {
-            List<Cell> cells = new(gridSize.x * gridSize.y * gridSize.z);
-
-            for (int x = 0; x < gridSize.x; ++x)
-            {
-                for (int y = 0; y < gridSize.y; ++y)
-                {
-                    for (int z = 0; z < gridSize.z; ++z)
-                    {
-                        cells.Add(new Cell(new List<ITileOption>(possibleTiles), new int3(x, y, z)));
-                    }
-                }
-            }
-
-            return cells;
-        }
-
-        /// <summary>
         /// Génère toutes les salles guaranties d'être présentes dans un niveau
         /// </summary>
         /// <param name="gridCells">La liste des cellules de la grille</param>
         /// <param name="unoccupiedCells">La liste des cellules libres</param>
         /// <param name="rooms">La palette de salles à utiliser</param>
+        /// <param name="allOptions">La liste de toutes les options de case</param>
         /// <param name="gridSize">Les dimensions de la grille</param>
         /// <param name="rand">Le générateur d'aléatoire</param>
-        private static void CreateGuaranteedFixedRooms(List<Cell> gridCells, List<Cell> unoccupiedCells, FixedRoom[] rooms, int3 gridSize, ref Random rand)
+        private static void CreateGuaranteedFixedRooms(List<Cell> gridCells, List<Cell> unoccupiedCells, FixedRoom[] rooms, List<Tile> allOptions, int3 gridSize, ref Random rand)
         {
             foreach (FixedRoom room in rooms)
             {
@@ -169,6 +171,9 @@ namespace Assets.Scripts.ViewModels.WFC
                 {
                     if (TryCollapseRandomCellToFixedRoom(room, gridCells, gridSize, unoccupiedCells, roomCells, ref rand))
                     {
+                        // Màj l'entropie des voisins
+
+                        UpdateNeighbouringCells(gridCells, unoccupiedCells, allOptions);
                         break;
                     }
 
@@ -194,13 +199,13 @@ namespace Assets.Scripts.ViewModels.WFC
         /// <param name="gridCells">La liste des cellules de la grille</param>
         /// <param name="unoccupiedCells">La liste des cellules libres</param>
         /// <param name="rooms">La palette de salles à utiliser</param>
+        /// <param name="allOptions">La liste de toutes les options de case</param>
         /// <param name="gridSize">Les dimensions de la grille</param>
         /// <param name="nbMaxRooms">Le nombre max d'itérations avant d'abandonner</param>
         /// <param name="rand">Le générateur d'aléatoire</param>
-        private static void CreateFixedRooms(List<Cell> gridCells, List<Cell> unoccupiedCells, FixedRoom[] rooms, int3 gridSize, int nbMaxRooms, ref Random rand)
+        private static void CreateFixedRooms(List<Cell> gridCells, List<Cell> unoccupiedCells, FixedRoom[] rooms, List<Tile> allOptions, int3 gridSize, int nbMaxRooms, ref Random rand)
         {
             int iterations = 0;
-            int nbCreated = 0;
 
             while (iterations < nbMaxRooms)
             {
@@ -209,13 +214,13 @@ namespace Assets.Scripts.ViewModels.WFC
 
                 if (TryCollapseRandomCellToFixedRoom(room, gridCells, gridSize, unoccupiedCells, roomCells, ref rand))
                 {
-                    ++nbCreated;
+                    // Màj l'entropie des voisins
+
+                    UpdateNeighbouringCells(gridCells, unoccupiedCells, allOptions);
                 }
 
                 ++iterations;
             }
-
-            UnityEngine.Debug.Log($"Grid size:{gridSize} ; nb Max Rooms: {nbMaxRooms} ; nb created : {nbCreated}");
         }
 
         /// <summary>
@@ -278,6 +283,7 @@ namespace Assets.Scripts.ViewModels.WFC
             // Retire la 1è cellule vu que c'est un doublon
 
             roomCells.RemoveAt(0);
+            unoccupiedCells.Remove(cell);
 
             // S'il y en a assez, on les fusionne
 
@@ -290,7 +296,8 @@ namespace Assets.Scripts.ViewModels.WFC
 
             // Puis on lui assigne la salle comme seule option
 
-            cell.Options = new List<ITileOption> { room };
+            cell.Options.Clear();
+            cell.SelectedOption = room;
             gridCells[cellIndex] = cell;
 
             return true;
@@ -445,48 +452,43 @@ namespace Assets.Scripts.ViewModels.WFC
         /// <summary>
         /// Itère sur les cellules à effondrer
         /// </summary>
-        /// <param name="cells">La liste des cellules de la grille</param>
-        /// <param name="gridSize">Les dimensions de la grille</param>
+        /// <param name="gridCells">La liste des cellules de la grille</param>
+        /// <param name="unoccupiedCells">a liste des cellules libres</param>
+        /// <param name="cellsWithLowestEntropy">La liste des cellules avec la plus faible entropie</param>
+        /// <param name="allOptions">La liste de toutes les options de case</param>
         /// <param name="rand">Le générateur d'aléatoire</param>
-        private static void Iterate(List<Cell> cells, int3 gridSize, ref Random rand)
+        private static void CreateTiles(List<Cell> gridCells, List<Cell> unoccupiedCells, List<Cell> cellsWithLowestEntropy, List<Tile> allOptions, ref Random rand)
         {
             // On récupère les cellules avec l'entropie la plus basse (le moins de possibilités restantes)
 
-            int[] lowestEntropyIndexes = GetCellsWithLowestEntropy(cells);
+            GetCellsWithLowestEntropy(unoccupiedCells, cellsWithLowestEntropy);
 
             // Effondre une cellule au hasard
 
-            int randIndex = lowestEntropyIndexes[rand.NextInt(0, lowestEntropyIndexes.Length)];
-            Cell cellToCollapse = cells[randIndex];
+            Cell cellToCollapse = cellsWithLowestEntropy[rand.NextInt(0, cellsWithLowestEntropy.Count)];
+            int index = gridCells.IndexOf(cellToCollapse);
+            unoccupiedCells.Remove(cellToCollapse);
             CollapseRandomPossibility(ref cellToCollapse, ref rand);
-            cells[randIndex] = cellToCollapse;
+            gridCells[index] = cellToCollapse;
 
             // Màj l'entropie des voisins
 
-            //UpdateNeighbouringCells();
+            UpdateNeighbouringCells(gridCells, unoccupiedCells, allOptions);
         }
 
         /// <summary>
         /// Récupère dans la liste de cellules renseignée,
         /// les cellules avec le nb de possibilités le plus bas
         /// </summary>
-        /// <param name="gridCells">La liste de cellules non-effondrées</param>
+        /// <param name="unoccupiedCells">La liste de cellules libres</param>
+        /// <param name="cellsWithLowestEntropy">La liste des cellules avec la plus faible entropie</param>
         /// <returns>La liste des positions des cellules avec le nb de possibilités le plus bas</returns>
-        private static int[] GetCellsWithLowestEntropy(List<Cell> gridCells)
+        private static void GetCellsWithLowestEntropy(List<Cell> unoccupiedCells, List<Cell> cellsWithLowestEntropy)
         {
-            List<Cell> tempGrid = new(gridCells);
-            tempGrid.RemoveAll(c => c.Collapsed);
-            tempGrid.OrderBy(c => c.Entropy);
-            tempGrid.RemoveAll(c => c.Entropy != tempGrid[0].Entropy);
-
-            int[] ids = new int[tempGrid.Count];
-
-            for (int i = 0; i < tempGrid.Count; ++i)
-            {
-                ids[i] = gridCells.IndexOf(tempGrid[i]);
-            }
-
-            return ids;
+            cellsWithLowestEntropy.Clear();
+            cellsWithLowestEntropy.AddRange(unoccupiedCells);
+            cellsWithLowestEntropy.OrderBy(c => c.Entropy);
+            cellsWithLowestEntropy.RemoveAll(c => c.Entropy != cellsWithLowestEntropy[0].Entropy);
         }
 
         /// <summary>
@@ -497,7 +499,24 @@ namespace Assets.Scripts.ViewModels.WFC
         private static void CollapseRandomPossibility(ref Cell cellToCollapse, ref Random rand)
         {
             ITileOption selectedTile = cellToCollapse.Options[rand.NextInt(0, cellToCollapse.Options.Count)];
-            cellToCollapse.Options = new List<ITileOption> { selectedTile };
+            cellToCollapse.Options.Clear();
+            cellToCollapse.SelectedOption = selectedTile;
+        }
+
+        /// <summary>
+        /// Màj l'entropie des cellules voisines
+        /// </summary>
+        /// <param name="gridCells">La liste des cellules de la grille</param>
+        /// <param name="unoccupiedCells">a liste des cellules libres</param>
+        /// <param name="allOptions">La liste de toutes les options de case</param>
+        private static void UpdateNeighbouringCells(List<Cell> gridCells, List<Cell> unoccupiedCells, List<Tile> allOptions)
+        {
+            foreach (Cell cell in unoccupiedCells)
+            {
+                int index = gridCells.IndexOf(cell);
+                unoccupiedCells.Remove(cell);
+
+            }
         }
 
         #endregion

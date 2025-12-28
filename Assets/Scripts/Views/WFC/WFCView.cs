@@ -113,17 +113,28 @@ namespace Assets.Scripts.Views.WFC
                 }
             }
 
-            Gizmos.color = Color.red;
-
             if (_drawRooms)
             {
                 foreach (Cell cell in _cells)
                 {
-                    if (cell.Options.Count == 1 && cell.Options[0] is FixedRoom fr)
+                    switch (cell.SelectedOption)
                     {
-                        int3 size = fr.Size;
-                        int3 avg = cell.Range.Centroid;
-                        Gizmos.DrawCube(new Vector3(avg.x, avg.y, avg.z), new Vector3(size.x, size.y, size.z));
+                        case Tile:
+                            Gizmos.color = Color.green;
+                            int3 v = cell.Range[0];
+                            Gizmos.DrawCube(new Vector3(v.x, v.y, v.z), Vector3.one);
+                            break;
+
+                        case FixedRoom fr:
+                            Gizmos.color = Color.red;
+                            int3 size = fr.Size;
+                            int3 avg = cell.Range.Centroid;
+                            Gizmos.DrawCube(new Vector3(avg.x, avg.y, avg.z), new Vector3(size.x, size.y, size.z));
+                            break;
+
+                        default:
+                            break;
+
                     }
                 }
             }
@@ -146,6 +157,8 @@ namespace Assets.Scripts.Views.WFC
             catch (System.Exception e)
             {
                 Debug.LogException(e);
+
+                Clear();
             }
         }
 
@@ -155,7 +168,7 @@ namespace Assets.Scripts.Views.WFC
         [ContextMenu("Clear Previous Results")]
         public void Clear()
         {
-            _cells.Clear();
+            _cells?.Clear();
         }
 
         #endregion
