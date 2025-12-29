@@ -18,296 +18,122 @@ MonoBehaviour:
     y: 1
     z: 3
   <RightNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 1
-      bytes:
-        offset0000:
-          byte0000: 48
-          byte0001: 0
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
   <LeftNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 1
-      bytes:
-        offset0000:
-          byte0000: 48
-          byte0001: 0
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  <UpNeighbours>k__BackingField: []
-  <DownNeighbours>k__BackingField: []
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  <UpNeighbours>k__BackingField:
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  <DownNeighbours>k__BackingField:
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Empty
+      <Weight>k__BackingField: 0
   <ForwardNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 1
-      bytes:
-        offset0000:
-          byte0000: 48
-          byte0001: 0
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
   <BackNeighbours>k__BackingField:
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField:
-    - utf8LengthInBytes: 1
-      bytes:
-        offset0000:
-          byte0000: 48
-          byte0001: 0
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
-    - utf8LengthInBytes: 2
-      bytes:
-        offset0000:
-          byte0000: 45
-          byte0001: 49
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0016: 0
-        byte0017: 0
-        byte0018: 0
-        byte0019: 0
-        byte0020: 0
-        byte0021: 0
-        byte0022: 0
-        byte0023: 0
-        byte0024: 0
-        byte0025: 0
-        byte0026: 0
-        byte0027: 0
-        byte0028: 0
-        byte0029: 0
-    <Weights>k__BackingField: []
-  - <PossibleNeighbours>k__BackingField: []
-    <Weights>k__BackingField: []
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50
+  - <Options>k__BackingField:
+    - <ID>k__BackingField: Wall
+      <Weight>k__BackingField: 50
+    - <ID>k__BackingField: Walkable
+      <Weight>k__BackingField: 50

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Assets.Scripts.Models.WFC;
+using Assets.Scripts.Models.WFC.SOs;
 using Unity.Mathematics;
 using UnityEngine;
 using random = Unity.Mathematics.Random;

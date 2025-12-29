@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Assets.Scripts.Models.WFC.SOs;
 using Unity.Mathematics;
 
 namespace Assets.Scripts.Models.WFC

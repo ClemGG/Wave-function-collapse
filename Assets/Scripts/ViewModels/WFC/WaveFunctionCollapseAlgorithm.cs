@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Models.WFC;
+using Assets.Scripts.Models.WFC.SOs;
 using Unity.Mathematics;
 
 namespace Assets.Scripts.ViewModels.WFC

@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1937a2ced2d93b449ca2ecd3e1fc5d8, type: 3}
-  m_Name: Corridor Tile
+  m_Name: Wall Tile
   m_EditorClassIdentifier: Assets.Scripts.Models::Tile
-  <TilePrefab>k__BackingField: {fileID: 8118528305074389570, guid: 75de1260c7f39ee46b1f776b6026b5bc, type: 3}
+  <TilePrefab>k__BackingField: {fileID: 8118528305074389570, guid: 13a6ae648c72c8f4296bc1ffa0db168a, type: 3}
   <RightOptions>k__BackingField:
     <Options>k__BackingField:
-    - <ID>k__BackingField: Empty
+    - <ID>k__BackingField: Wall
       <Weight>k__BackingField: 0
   <LeftOptions>k__BackingField:
     <Options>k__BackingField:
-    - <ID>k__BackingField: Empty
+    - <ID>k__BackingField: Wall
       <Weight>k__BackingField: 0
   <UpOptions>k__BackingField:
     <Options>k__BackingField:
-    - <ID>k__BackingField: Empty
+    - <ID>k__BackingField: Wall
       <Weight>k__BackingField: 0
   <DownOptions>k__BackingField:
     <Options>k__BackingField:
-    - <ID>k__BackingField: Empty
+    - <ID>k__BackingField: Wall
       <Weight>k__BackingField: 0
   <ForwardOptions>k__BackingField:
     <Options>k__BackingField:
-    - <ID>k__BackingField: Walkable
+    - <ID>k__BackingField: Wall
       <Weight>k__BackingField: 0
   <BackOptions>k__BackingField:
     <Options>k__BackingField:
-    - <ID>k__BackingField: Walkable
+    - <ID>k__BackingField: Wall
       <Weight>k__BackingField: 0

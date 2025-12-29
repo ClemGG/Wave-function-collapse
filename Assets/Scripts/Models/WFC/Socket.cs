@@ -1,5 +1,4 @@
 using System;
-using Unity.Collections;
 
 using UnityEngine;
 
@@ -12,21 +11,13 @@ namespace Assets.Scripts.Models.WFC
     /// et pouvant donc posséder plusieurs ports par côté.
     /// </summary>
     [Serializable]
-    public struct Socket
+    public class Socket
     {
         /// <summary>
-        /// Les IDs des voisins possibles pour ce port
+        /// Les IDs des options possibles pour ce port
         /// </summary>
         [field: SerializeField]
-        [field: Tooltip("Les IDs des voisins possibles pour ce port")]
-        public FixedString32Bytes[] PossibleNeighbours { get; private set; }
-
-        /// <summary>
-        /// Les probabilités de chaque ID d'être sélectionné pour la génération.
-        /// Si tous ont la même probabilité, laisser le tableau vide.
-        /// </summary>
-        [field: SerializeField]
-        [field: Tooltip("Les probabilités de chaque ID d'être sélectionné pour la génération. Si tous ont la même probabilité, laisser le tableau vide.")]
-        public float[] Weights { get; private set; }
+        [field: Tooltip("Les IDs des options possibles pour ce port")]
+        public SocketOption[] Options { get; private set; }
     }
 }
