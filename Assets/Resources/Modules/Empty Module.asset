@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab85909713e77d479b3f62ca0630a32, type: 3}
   m_Name: Empty Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
-  <Prefab>k__BackingField: {fileID: 0}
+  <Prefab>k__BackingField: {fileID: 8277811792534467576, guid: 6f4578fa41055c44c8ba751586ed3921, type: 3}
   <Sockets>k__BackingField:
   - -1
   - -1
