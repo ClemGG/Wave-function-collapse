@@ -128,7 +128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 366060059}
-  - component: {fileID: 366060058}
   m_Layer: 0
   m_Name: WFC
   m_TagString: Untagged
@@ -136,26 +135,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &366060058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366060057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c968e8ec8e79464a8fa5a4cc87f744c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assets.Scripts.Views::WFCView
-  <_tilePalette>k__BackingField: {fileID: 11400000, guid: fddb9d4e62fdbea41a85f4610d844bdc, type: 2}
-  <_gridSettings>k__BackingField: {fileID: 11400000, guid: a8ed42e558f972b4385ac9c468ca1bed, type: 2}
-  <_seed>k__BackingField: 0
-  <_drawGizmos>k__BackingField: 1
-  <_drawCells>k__BackingField: 1
-  <_drawRooms>k__BackingField: 1
-  rand:
-    state: 4285910201
 --- !u!4 &366060059
 Transform:
   m_ObjectHideFlags: 0
