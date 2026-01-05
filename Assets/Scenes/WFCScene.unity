@@ -154,6 +154,8 @@ MonoBehaviour:
   <_drawGizmos>k__BackingField: 1
   <_drawCells>k__BackingField: 1
   <_drawRooms>k__BackingField: 1
+  rand:
+    state: 4285910201
 --- !u!4 &366060059
 Transform:
   m_ObjectHideFlags: 0

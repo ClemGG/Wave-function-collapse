@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab85909713e77d479b3f62ca0630a32, type: 3}
+  m_Name: Dead End Module
+  m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
+  <Prefab>k__BackingField: {fileID: 1315242521171010811, guid: 1409bf4f9732d6c4a8c5c9d2880bf703, type: 3}
+  <Sockets>k__BackingField:
+  - -1
+  - -1
+  - -1
+  - -1
+  - -1
+  - 0s
+  <ValidNeighbours>k__BackingField:
+    <RightNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <LeftNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <UpNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <DownNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <ForwardNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <BackNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: cb7d6301ec8b90447ab0e08e20b70e08, type: 2}
+    - {fileID: 11400000, guid: bb83f1418eaad174d9696ac3dd73c8f3, type: 2}

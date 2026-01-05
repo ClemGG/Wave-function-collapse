@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab85909713e77d479b3f62ca0630a32, type: 3}
+  m_Name: Wall Module
+  m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
+  <Prefab>k__BackingField: {fileID: 6224179872551864897, guid: d2e41df924768ca48a32fc2da8360edc, type: 3}
+  <Sockets>k__BackingField:
+  - -2
+  - -2
+  - -2
+  - -2
+  - -2
+  - -2
+  <ValidNeighbours>k__BackingField:
+    <RightNeighbours>k__BackingField: []
+    <LeftNeighbours>k__BackingField: []
+    <UpNeighbours>k__BackingField: []
+    <DownNeighbours>k__BackingField: []
+    <ForwardNeighbours>k__BackingField: []
+    <BackNeighbours>k__BackingField: []

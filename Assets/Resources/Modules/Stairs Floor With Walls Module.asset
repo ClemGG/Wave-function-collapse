@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab85909713e77d479b3f62ca0630a32, type: 3}
+  m_Name: Stairs Floor With Walls Module
+  m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
+  <Prefab>k__BackingField: {fileID: 7544075878412724729, guid: 51cf3514968015f4691bfa5444fc82ed, type: 3}
+  <Sockets>k__BackingField:
+  - -1
+  - -1
+  - v2_0
+  - -1
+  - -1
+  - 0s
+  <ValidNeighbours>k__BackingField:
+    <RightNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <LeftNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <UpNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 722ec495d91420c428a137356eb90656, type: 2}
+    - {fileID: 11400000, guid: 644837526717ee64bac82270cb50adb0, type: 2}
+    - {fileID: 11400000, guid: 7cbe981f7f5a5664e8c7a543cb86cb02, type: 2}
+    <DownNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <ForwardNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: 52be184eb6b630a4e97370bcd610db8b, type: 2}
+    <BackNeighbours>k__BackingField:
+    - {fileID: 11400000, guid: cb7d6301ec8b90447ab0e08e20b70e08, type: 2}
