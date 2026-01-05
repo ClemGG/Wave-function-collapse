@@ -27,3 +27,10 @@ MonoBehaviour:
     <DownNeighbours>k__BackingField: []
     <ForwardNeighbours>k__BackingField: []
     <BackNeighbours>k__BackingField: []
+  <Weights>k__BackingField:
+    <RightWeights>k__BackingField: []
+    <LeftWeights>k__BackingField: []
+    <UpWeights>k__BackingField: []
+    <DownWeights>k__BackingField: []
+    <ForwardWeights>k__BackingField: []
+    <BackWeights>k__BackingField: []

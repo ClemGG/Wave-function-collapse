@@ -41,3 +41,22 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cb7d6301ec8b90447ab0e08e20b70e08, type: 2}
     - {fileID: 11400000}
     - {fileID: 11400000, guid: 28e615ece2c2af64f86641d901f42481, type: 2}
+  <Weights>k__BackingField:
+    <RightWeights>k__BackingField:
+    - 25
+    - 50
+    - 25
+    <LeftWeights>k__BackingField:
+    - 25
+    - 50
+    - 25
+    <UpWeights>k__BackingField: []
+    <DownWeights>k__BackingField: []
+    <ForwardWeights>k__BackingField:
+    - 25
+    - 50
+    - 25
+    <BackWeights>k__BackingField:
+    - 25
+    - 50
+    - 25

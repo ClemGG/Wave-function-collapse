@@ -33,3 +33,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: cb7d6301ec8b90447ab0e08e20b70e08, type: 2}
     <BackNeighbours>k__BackingField:
     - {fileID: 11400000, guid: cb7d6301ec8b90447ab0e08e20b70e08, type: 2}
+  <Weights>k__BackingField:
+    <RightWeights>k__BackingField: []
+    <LeftWeights>k__BackingField: []
+    <UpWeights>k__BackingField: []
+    <DownWeights>k__BackingField: []
+    <ForwardWeights>k__BackingField: []
+    <BackWeights>k__BackingField: []

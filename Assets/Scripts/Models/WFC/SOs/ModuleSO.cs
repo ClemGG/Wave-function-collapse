@@ -25,5 +25,13 @@ namespace Assets.Scripts.Models.WFC.SOs
         /// </summary>
         [field: SerializeField]
         public ValidNeighbours ValidNeighbours { get; private set; }
+
+        /// <summary>
+        /// Les poids des voisins valides pour chaque face d'un module, de 0% à 100%.
+        /// Si une liste est vide, cela veut dire qu'il n'y a qu'1 seul voisin
+        /// ou qu'ils ont tous la même probabilité.
+        /// </summary>
+        [field: SerializeField]
+        public NeighboursWeights Weights { get; private set; }
     }
 }
