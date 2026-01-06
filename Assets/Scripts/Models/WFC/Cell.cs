@@ -12,6 +12,11 @@ namespace Assets.Scripts.Models.WFC
         #region Propriétés
 
         /// <summary>
+        /// Le nombre de possibilités restantes pour cette cellule
+        /// </summary>
+        public readonly int Entropy => Options.Length;
+
+        /// <summary>
         /// TRUE si la cellule n'a plus qu'une seule option
         /// </summary>
         public readonly bool Collapsed => Options.Length == 1;

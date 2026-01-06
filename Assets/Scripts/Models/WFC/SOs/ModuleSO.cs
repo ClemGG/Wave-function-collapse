@@ -15,6 +15,12 @@ namespace Assets.Scripts.Models.WFC.SOs
         public GameObject Prefab { get; private set; }
 
         /// <summary>
+        /// La probabilité du prototype d'être sélectioné lors de l'effondrement d'une cellule
+        /// </summary>
+        [field: SerializeField]
+        public byte Weight { get; private set; } = 1;
+
+        /// <summary>
         /// Les ports de chaque face (X, -X, Y, -Y, Z, -Z)
         /// </summary>
         [field: SerializeField]
@@ -25,13 +31,5 @@ namespace Assets.Scripts.Models.WFC.SOs
         /// </summary>
         [field: SerializeField]
         public ValidNeighbours ValidNeighbours { get; private set; }
-
-        /// <summary>
-        /// Les poids des voisins valides pour chaque face d'un module, de 0% à 100%.
-        /// Si une liste est vide, cela veut dire qu'il n'y a qu'1 seul voisin
-        /// ou qu'ils ont tous la même probabilité.
-        /// </summary>
-        [field: SerializeField]
-        public NeighboursWeights Weights { get; private set; }
     }
 }

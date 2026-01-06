@@ -24,6 +24,12 @@ namespace Assets.Scripts.Models.WFC
         public byte Rotation { get; set; }
 
         /// <summary>
+        /// La probabilité du prototype d'être sélectioné lors de l'effondrement d'une cellule
+        /// </summary>
+        [field: SerializeField]
+        public byte Weight { get; set; }
+
+        /// <summary>
         /// Les ports de chaque face (X, -X, Y, -Y, Z, -Z)
         /// </summary>
         [field: SerializeField]
@@ -35,14 +41,6 @@ namespace Assets.Scripts.Models.WFC
         [field: SerializeField]
         public ValidNeighbours ValidNeighbours { get; set; }
 
-        /// <summary>
-        /// Les poids des voisins valides pour chaque face d'un module, de 0% à 100%.
-        /// Si une liste est vide, cela veut dire qu'il n'y a qu'1 seul voisin
-        /// ou qu'ils ont tous la même probabilité.
-        /// </summary>
-        [field: SerializeField]
-        public NeighboursWeights Weights { get; set; }
-
         #endregion
 
         #region Constructeur
@@ -53,10 +51,11 @@ namespace Assets.Scripts.Models.WFC
         /// <param name="module">Le module source</param>
         public Prototype(ModuleSO module) : this()
         {
+            Rotation = 0;
+            Weight = module.Weight;
             Prefab = module.Prefab;
             Sockets = new string[6];
             ValidNeighbours = new ValidNeighbours(module.ValidNeighbours);
-            Weights = new NeighboursWeights(module.Weights);
             Array.Copy(module.Sockets, Sockets, module.Sockets.Length);
         }
 
@@ -73,8 +72,7 @@ namespace Assets.Scripts.Models.WFC
         {
             if (Prefab != other.Prefab ||
                 Sockets.Length != other.Sockets.Length ||
-                !ValidNeighbours.Equals(other.ValidNeighbours) ||
-                !Weights.Equals(other.Weights))
+                !ValidNeighbours.Equals(other.ValidNeighbours))
             {
                 return false;
             }
@@ -87,8 +85,7 @@ namespace Assets.Scripts.Models.WFC
                 }
             }
 
-            if (!ValidNeighbours.Equals(other.ValidNeighbours) ||
-                !Weights.Equals(other.Weights))
+            if (!ValidNeighbours.Equals(other.ValidNeighbours))
             {
                 return false;
             }

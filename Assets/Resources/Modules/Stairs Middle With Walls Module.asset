@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab85909713e77d479b3f62ca0630a32, type: 3}
   m_Name: Stairs Middle With Walls Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
-  <Prefab>k__BackingField: {fileID: 7544075878412724729, guid: 51cf3514968015f4691bfa5444fc82ed, type: 3}
+  <Prefab>k__BackingField: {fileID: 7560629147386453096, guid: ca461f6252ce86f409715361b243295d, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
-  - -1
-  - -1
+  - -2
+  - -2
   - v2_0
   - -1
   - -1
