@@ -90,11 +90,6 @@ namespace Assets.Scripts.Views.WFC
         string[][] _socketsNames;
 
         /// <summary>
-        /// La palette précédente
-        /// </summary>
-        private ModulePaletteSO _previousPalette;
-
-        /// <summary>
         /// True pour màj la scène
         /// </summary>
         private bool _updateView;
@@ -102,6 +97,17 @@ namespace Assets.Scripts.Views.WFC
         #endregion
 
         #region Méthodes Unity
+
+        /// <summary>
+        /// Init
+        /// </summary>
+        private void Awake()
+        {
+            while (transform.childCount > 0)
+            {
+                DestroyImmediate(transform.GetChild(0).gameObject);
+            }
+        }
 
         /// <summary>
         /// Màj à chaque frame
@@ -112,24 +118,17 @@ namespace Assets.Scripts.Views.WFC
             {
                 _updateView = false;
 
-                if (_previousPalette != _palette)
+                if (_instances != null)
                 {
-                    _previousPalette = _palette;
-
-                    if (_instances != null)
+                    foreach (GameObject go in _instances)
                     {
-                        foreach (GameObject go in _instances)
-                        {
-                            DestroyImmediate(go);
-                        }
-
-                        _instances = null;
+                        DestroyImmediate(go);
                     }
+                }
 
-                    if (_palette != null)
-                    {
-                        CreatePrototypes();
-                    }
+                if (_palette != null)
+                {
+                    CreatePrototypes();
                 }
             }
         }
@@ -150,7 +149,7 @@ namespace Assets.Scripts.Views.WFC
         /// </summary>
         private void OnDrawGizmos()
         {
-            if (!_showGizmos || _instances == null || _palette == null)
+            if (!_showGizmos || _palette == null)
             {
                 return;
             }
@@ -189,11 +188,6 @@ namespace Assets.Scripts.Views.WFC
         /// </summary>
         private void CreatePrototypes()
         {
-            if (_palette == null)
-            {
-                return;
-            }
-
             List<Prototype> prototypes = _viewModel.CreatePrototypes(_palette.Modules);
 
             _instances = new GameObject[prototypes.Count];
@@ -217,6 +211,7 @@ namespace Assets.Scripts.Views.WFC
                     if (previousGameObject != prototypes[count].Prefab)
                     {
                         previousGameObject = prototypes[count].Prefab;
+                        ++z;
                         break;
                     }
 
@@ -224,13 +219,7 @@ namespace Assets.Scripts.Views.WFC
 
                     ++count;
                 }
-
-                ++z;
             }
-
-            // Idéalement pour que les instances ne persistent pas quand on quitte la scène,
-            // il faudrait les marquer pour indiquer à l'éditeur de ne pas les sauvegarder avec la scène.
-            // j'ai la flemme de le faire, donc il faudra penser à retirer la palette quand on a terminé.
 
             for (int i = 0; i < prototypes.Count; ++i)
             {

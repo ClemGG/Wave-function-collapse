@@ -1,15 +1,31 @@
 using System.Collections.Generic;
 using Assets.Scripts.Models.WFC;
 using Assets.Scripts.Models.WFC.SOs;
-using UnityEngine;
+using Unity.Collections;
+using Unity.Mathematics;
 
 namespace Assets.Scripts.ViewModels.WFC
 {
     /// <summary>
     /// La logique de l'algorithme WFC
     /// </summary>
-    public class WFCViewModel : MonoBehaviour
+    public class WFCViewModel : UnityEngine.MonoBehaviour
     {
+        #region Méthodes publiques
+
+        /// <summary>
+        /// Génère un nouveau niveau
+        /// </summary>
+        /// <param name="palette">La palette contenant les modules à instancier</param>
+        /// <param name="gridSettings">Les paramètres de la grille</param>
+        /// <param name="random">Générateur d'aléatoire</param>
+        public void Generate(ModulePaletteSO palette, GridSettingsSO gridSettings, ref Random random)
+        {
+            List<Prototype> prototypes = CreatePrototypes(palette.Modules);
+            int3 gridSize = random.NextInt3(gridSettings.MinSize, gridSettings.MaxSize);
+            Cell[] gridCells = CreateGridCells(gridSize, prototypes);
+        }
+
         /// <summary>
         /// Crée une liste de prototypes à partir des modules renseignés
         /// </summary>
@@ -30,8 +46,13 @@ namespace Assets.Scripts.ViewModels.WFC
             return prototypes;
         }
 
+        #endregion
+
+        #region Méthodes privées
+
         /// <summary>
-        /// Crée les prototypes représentant chaque rotation du module renseigné
+        /// Crée les prototypes représentant chaque rotation du module renseigné.
+        /// Cette méthode évite de créer des doublons.
         /// </summary>
         /// <param name="module">Le module</param>
         /// <param name="temp">La liste des prototypes</param>
@@ -113,5 +134,41 @@ namespace Assets.Scripts.ViewModels.WFC
 
             temp.Add(p4);
         }
+
+        /// <summary>
+        /// Crée la grille de cellules
+        /// </summary>
+        /// <param name="gridSize">La taille de la grille</param>
+        /// <param name="prototypes">Les prototypes à instancier</param>
+        /// <returns>Une nouvelle grille de cellules</returns>
+        private Cell[] CreateGridCells(int3 gridSize, List<Prototype> prototypes)
+        {
+            NativeArray<int> prototypeIDs = new(prototypes.Count, Allocator.Temp);
+
+            for (int i = 0; i < prototypes.Count; ++i)
+            {
+                prototypeIDs[i] = i;
+            }
+
+            Cell[] gridCells = new Cell[gridSize.x * gridSize.y * gridSize.z];
+
+            for (int z = 0; z < gridSize.z; ++z)
+            {
+                for (int y = 0; y < gridSize.y; ++y)
+                {
+                    for (int x = 0; x < gridSize.x; ++x)
+                    {
+                        NativeList<int> prototypeIDsCopy = new(prototypes.Count, Allocator.Temp);
+                        prototypeIDsCopy.CopyFrom(in prototypeIDs);
+                        int index = z * gridSize.y * gridSize.x + y * gridSize.x + x;
+                        gridCells[index] = new Cell(new int3(x, y, z), prototypeIDsCopy);
+                    }
+                }
+            }
+
+            return gridCells;
+        }
+
+        #endregion
     }
 }
