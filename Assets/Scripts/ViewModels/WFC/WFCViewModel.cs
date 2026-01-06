@@ -231,9 +231,9 @@ namespace Assets.Scripts.ViewModels.WFC
 
             // On récupère les prototypes associés à cette cellule
 
-            Prototype[] cellPrototypes = new Prototype[randomCell.Options.Length];
+            Prototype[] cellPrototypes = new Prototype[randomCell.Entropy];
 
-            for (int i = 0; i < randomCell.Options.Length; ++i)
+            for (int i = 0; i < randomCell.Entropy; ++i)
             {
                 cellPrototypes[i] = prototypes[randomCell.Options[i]];
             }
@@ -245,14 +245,14 @@ namespace Assets.Scripts.ViewModels.WFC
             int length = cellPrototypes.Sum(p => p.Weight);
             NativeList<int> weightedOptions = new(length, Allocator.Temp);
 
-            for (int i = 0; i < randomCell.Options.Length; ++i)
+            for (int i = 0; i < randomCell.Entropy; ++i)
             {
-                int id = randomCell.Options[i];
+                int prototypeID = randomCell.Options[i];
                 Prototype p = cellPrototypes[i];
 
                 for (byte j = 0; j < p.Weight; ++j)
                 {
-                    weightedOptions.Add(id);
+                    weightedOptions.Add(prototypeID);
                 }
             }
 
@@ -279,6 +279,7 @@ namespace Assets.Scripts.ViewModels.WFC
 
             NativeList<int> neighbouringCellsIDs = new(6, Allocator.Temp);
             NativeList<int> protoypeValidArraysIDs = new(6, Allocator.Temp);
+            NativeList<int> curPossibilities = new(1, Allocator.Temp);
 
             while (cellsToPropagate.TryPop(out Cell curCell))
             {
@@ -287,24 +288,33 @@ namespace Assets.Scripts.ViewModels.WFC
 
                 for (int i = 0; i < neighbouringCellsIDs.Length; ++i)
                 {
-                    int cellID = neighbouringCellsIDs[i];
                     int prototypeValidArrayID = protoypeValidArraysIDs[i];
-                    Cell neighbour = gridCells[cellID];
-                    NativeList<int> curPossibilities = new(1, Allocator.Temp);
+                    Cell neighbour = gridCells[neighbouringCellsIDs[i]];
+
+                    if (neighbour.Entropy == 0)
+                    {
+                        throw new System.Exception("Erreur : Cellule avec une entropie de 0. Relancement de la génération.");
+                    }
 
                     GetCurPossibilities(curPrototype, prototypeValidArrayID, prototypes, curPossibilities);
 
-                    for (int j = neighbour.Options.Length - 1; j == 0; --j)
+                    // Si curPossibilities est vide, on considère qu'il contient toutes les possibilités.
+                    // On ne peut donc pas réduire celles du voisin.
+
+                    if (curPossibilities.Length > 0)
                     {
-                        int option = neighbour.Options[j];
-
-                        if (curPossibilities.Length > 0 && !curPossibilities.Contains(option))
+                        for (int j = neighbour.Entropy - 1; j >= 0; --j)
                         {
-                            neighbour.Options.RemoveAt(j);
+                            int option = neighbour.Options[j];
 
-                            if (!cellsToPropagate.Contains(neighbour))
+                            if (!curPossibilities.Contains(option))
                             {
-                                cellsToPropagate.Push(neighbour);
+                                neighbour.Options.RemoveAt(j);
+
+                                if (!cellsToPropagate.Contains(neighbour))
+                                {
+                                    cellsToPropagate.Push(neighbour);
+                                }
                             }
                         }
                     }
@@ -373,13 +383,10 @@ namespace Assets.Scripts.ViewModels.WFC
                 case 0:
                     modules = curPrototype.ValidNeighbours.RightNeighbours;
 
-                    if (modules.Length > 0)
+                    foreach (ModuleSO module in modules)
                     {
-                        foreach (ModuleSO module in modules)
-                        {
-                            Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[1] == curPrototype.Sockets[0]);
-                            curPossibilities.Add(prototypes.IndexOf(prototype));
-                        }
+                        Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[1] == curPrototype.Sockets[0]);
+                        curPossibilities.Add(prototypes.IndexOf(prototype));
                     }
                     break;
 
@@ -388,15 +395,11 @@ namespace Assets.Scripts.ViewModels.WFC
                 case 1:
                     modules = curPrototype.ValidNeighbours.LeftNeighbours;
 
-                    if (modules.Length > 0)
+                    foreach (ModuleSO module in modules)
                     {
-                        foreach (ModuleSO module in modules)
-                        {
-                            Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[0] == curPrototype.Sockets[1]);
-                            curPossibilities.Add(prototypes.IndexOf(prototype));
-                        }
+                        Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[0] == curPrototype.Sockets[1]);
+                        curPossibilities.Add(prototypes.IndexOf(prototype));
                     }
-
                     break;
 
                 // Voisin du haut
@@ -404,15 +407,11 @@ namespace Assets.Scripts.ViewModels.WFC
                 case 2:
                     modules = curPrototype.ValidNeighbours.UpNeighbours;
 
-                    if (modules.Length > 0)
+                    foreach (ModuleSO module in modules)
                     {
-                        foreach (ModuleSO module in modules)
-                        {
-                            Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[3] == curPrototype.Sockets[2]);
-                            curPossibilities.Add(prototypes.IndexOf(prototype));
-                        }
+                        Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[3] == curPrototype.Sockets[2]);
+                        curPossibilities.Add(prototypes.IndexOf(prototype));
                     }
-
                     break;
 
                 // Voisin du bas
@@ -420,13 +419,10 @@ namespace Assets.Scripts.ViewModels.WFC
                 case 3:
                     modules = curPrototype.ValidNeighbours.DownNeighbours;
 
-                    if (modules.Length > 0)
+                    foreach (ModuleSO module in modules)
                     {
-                        foreach (ModuleSO module in modules)
-                        {
-                            Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[2] == curPrototype.Sockets[3]);
-                            curPossibilities.Add(prototypes.IndexOf(prototype));
-                        }
+                        Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[2] == curPrototype.Sockets[3]);
+                        curPossibilities.Add(prototypes.IndexOf(prototype));
                     }
 
                     break;
@@ -436,13 +432,10 @@ namespace Assets.Scripts.ViewModels.WFC
                 case 4:
                     modules = curPrototype.ValidNeighbours.ForwardNeighbours;
 
-                    if (modules.Length > 0)
+                    foreach (ModuleSO module in modules)
                     {
-                        foreach (ModuleSO module in modules)
-                        {
-                            Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[5] == curPrototype.Sockets[4]);
-                            curPossibilities.Add(prototypes.IndexOf(prototype));
-                        }
+                        Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[5] == curPrototype.Sockets[4]);
+                        curPossibilities.Add(prototypes.IndexOf(prototype));
                     }
 
                     break;
@@ -452,13 +445,10 @@ namespace Assets.Scripts.ViewModels.WFC
                 case 5:
                     modules = curPrototype.ValidNeighbours.BackNeighbours;
 
-                    if (modules.Length > 0)
+                    foreach (ModuleSO module in modules)
                     {
-                        foreach (ModuleSO module in modules)
-                        {
-                            Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[4] == curPrototype.Sockets[5]);
-                            curPossibilities.Add(prototypes.IndexOf(prototype));
-                        }
+                        Prototype prototype = prototypes.First(p => p.Prefab == module.Prefab && p.Sockets[4] == curPrototype.Sockets[5]);
+                        curPossibilities.Add(prototypes.IndexOf(prototype));
                     }
 
                     break;

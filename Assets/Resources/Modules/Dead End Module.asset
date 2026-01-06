@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dead End Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
   <Prefab>k__BackingField: {fileID: 1315242521171010811, guid: 1409bf4f9732d6c4a8c5c9d2880bf703, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
   - -1
   - -1

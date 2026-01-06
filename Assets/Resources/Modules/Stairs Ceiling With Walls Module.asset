@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stairs Ceiling With Walls Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
   <Prefab>k__BackingField: {fileID: 8175302870823613152, guid: 43b1eb803371aa34baff658bb6be2e33, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
   - -1
   - -1

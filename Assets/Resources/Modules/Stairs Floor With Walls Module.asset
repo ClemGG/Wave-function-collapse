@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stairs Floor With Walls Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
   <Prefab>k__BackingField: {fileID: 7544075878412724729, guid: 51cf3514968015f4691bfa5444fc82ed, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
   - -1
   - -1

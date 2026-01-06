@@ -82,9 +82,17 @@ namespace Assets.Scripts.Views.WFC
         [ContextMenu("Generate")]
         private void Generate()
         {
-            _viewModel.Generate(_palette, _gridSettings, ref _random, out Cell[] gridCells, out List<Prototype> prototypes);
-            ClearMeshes();
-            Render(gridCells, prototypes, transform, _gridSettings.CellSize);
+            try
+            {
+                _viewModel.Generate(_palette, _gridSettings, ref _random, out Cell[] gridCells, out List<Prototype> prototypes);
+                ClearMeshes();
+                Render(gridCells, prototypes, transform, _gridSettings.CellSize);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogException(e);
+                Generate();
+            }
         }
 
         /// <summary>

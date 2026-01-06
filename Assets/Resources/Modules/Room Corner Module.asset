@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Room Corner Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
   <Prefab>k__BackingField: {fileID: 6101492515586796237, guid: def17112d9c847741998626317f497cb, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
   - -2
   - 0s

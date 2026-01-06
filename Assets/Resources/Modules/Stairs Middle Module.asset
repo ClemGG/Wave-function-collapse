@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stairs Middle Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
   <Prefab>k__BackingField: {fileID: 8139210744692701855, guid: 5d93fe13ecb8969408e7c3819ecbf38d, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
   - -1
   - -1

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Room Wall Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
   <Prefab>k__BackingField: {fileID: 2157891990639542237, guid: 4be822038ab84984fb38f14b3533f6a7, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
   - 0s
   - 0s

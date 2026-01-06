@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Empty Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
   <Prefab>k__BackingField: {fileID: 8277811792534467576, guid: 6f4578fa41055c44c8ba751586ed3921, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
   - -1
   - -1
@@ -27,10 +28,3 @@ MonoBehaviour:
     <DownNeighbours>k__BackingField: []
     <ForwardNeighbours>k__BackingField: []
     <BackNeighbours>k__BackingField: []
-  <Weights>k__BackingField:
-    <RightWeights>k__BackingField: []
-    <LeftWeights>k__BackingField: []
-    <UpWeights>k__BackingField: []
-    <DownWeights>k__BackingField: []
-    <ForwardWeights>k__BackingField: []
-    <BackWeights>k__BackingField: []

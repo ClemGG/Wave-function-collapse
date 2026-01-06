@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Corridor Module
   m_EditorClassIdentifier: Assets.Scripts.Models::Assets.Scripts.Models.WFC.SOs.ModuleSO
   <Prefab>k__BackingField: {fileID: 5435726791877070678, guid: a14a88af347e36b49b75e1c35f3e5161, type: 3}
+  <Weight>k__BackingField: 1
   <Sockets>k__BackingField:
   - -2
   - -2
@@ -39,18 +40,3 @@ MonoBehaviour:
     - {fileID: 11400000}
     - {fileID: 11400000, guid: 039d93bd0f1443f48b359d0d048ffb18, type: 2}
     - {fileID: 11400000, guid: 2a9905bbc64df0d43ad4981813967d95, type: 2}
-  <Weights>k__BackingField:
-    <RightWeights>k__BackingField: []
-    <LeftWeights>k__BackingField: []
-    <UpWeights>k__BackingField: []
-    <DownWeights>k__BackingField: []
-    <ForwardWeights>k__BackingField:
-    - 20
-    - 50
-    - 17
-    - 13
-    <BackWeights>k__BackingField:
-    - 20
-    - 50
-    - 17
-    - 13
